@@ -96,7 +96,6 @@ else:
             'PORT': '',
         }
     }
-}
 
 
 # Password validation
