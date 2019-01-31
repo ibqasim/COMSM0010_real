@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% title %}</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>	
+		
+	</head>
+	<body>
+		<header>
+			<div class="navbar navbar-dark bg-secondary">
+				<span class="navbar-brand">Bulletin</span>
+				<span class="navbar-text">Chatrooms with synced video</span>
+				<span class="navbar-text">Karim Allaouat, Ibrahim Qasim, Veyndan Stuart @ 2019</span>
+			</div>
+		</header>
+		<main>
+			{% content %}
+			<div class="container-fluid">
+				<div class="input-group">
+					<textarea class="form-control rounded-0 border-0" rows="3" style="resize: none;" placeholder="Enter text..."></textarea>
+					<div class="input-group-append">
+						<button class="btn rounded-0">Send</button>
+					</div>
+				</div>
+			</div>	
+		</main>
+		<footer>
+			<div class="navbar navbar-dark bg-secondary" style="position: absolute; bottom: 0; width: 100%;">
+				<span class="navbar-brand">Footer</span>
+				<span class="navbar-text">Karim Allaouat, Ibrahim Qasim, Veyndan Stuart @ 2019</span>
+			</div>
+		</footer>
+	</body>
+</html>

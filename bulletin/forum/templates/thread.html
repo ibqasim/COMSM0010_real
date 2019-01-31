@@ -1,0 +1,9 @@
+
+
+<h1>{{ thread.title }}</h1>
+<ul>
+{% for choice in thread.choice_set.all %}
+    <li>{{ choice.description }}</li>
+{% endfor %}
+</ul>
+
