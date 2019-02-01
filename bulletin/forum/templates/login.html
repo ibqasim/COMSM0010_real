@@ -12,9 +12,11 @@
 	</head>
 	<body style="height:100%; padding-left: 40%; padding-top: 10%; padding-right: 40%;">
 		{% if user.is_authenticated %}
+		<div style="text-align: center; width: 100%; max-width: 400px">
 		<h1><a href="/forum">Bulletin</a></h1>
 		<h3>Logged in as <strong> {{user.username}} </strong> </h3>
 		<a href="/forum" class="btn btn-light btn-block">Go to forum</a>
+		</div>
 		{% else %}
 		<form method="post" style="text-align: center; width: 100%; max-width: 400px">
 			<h1><a href="/forum">Bulletin</a></h1>
