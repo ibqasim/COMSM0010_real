@@ -1,9 +1,37 @@
 
-
+<h1>Thread</h1>
 <h1>{{ thread.title }}</h1>
-<ul>
+<p> {{ thread.description }} </p>
+<h3>{{ thread.user.username }}</h3>
+<ul> Choices
 {% for choice in thread.choice_set.all %}
-    <li>{{ choice.description }}</li>
+    <li>{{ choice.description }} {{ choice.count }}</li>
 {% endfor %}
 </ul>
+<ul> Posts
+{% for post in thread.post_set.all %}
+    <li>
+    	<p>{{ post.user.username }}</p>
+    	<p>{{ post.description }}</p>
+    	<p>{{ post.choice.description}}</p>
+    </li>
+{% endfor %}
+</ul>
+
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'forum:post' thread.id %}" method="post">
+{% csrf_token %}
+	<input id="post-description" name="description" placeholder="Description...">
+{% for choice in thread.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" required>
+    <label for="choice{{ forloop.counter }}">{{ choice.description }}</label>
+    <p for="choice{{ forloop.counter }}">{{ choice.count }}</p>
+    <p for="choice{{ forloop.counter }}">{{ choice.time_edited }}</p>
+    <br>
+{% endfor %}
+<input type="submit" value="Post">
+</form>
 

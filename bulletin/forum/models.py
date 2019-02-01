@@ -7,7 +7,7 @@ User = get_user_model()
 
 class Thread(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	title = models.CharField(max_length=100)
+	title = models.CharField(max_length=200)
 	description = models.TextField()
 	time_created = models.DateTimeField(auto_now_add=True)
 	time_edited = models.DateTimeField(auto_now=True)
@@ -30,8 +30,12 @@ class Thread(models.Model):
 class Choice(models.Model):
 	thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
 	description = models.TextField()
-	count = models.IntegerField()
+	count = models.IntegerField(default=0)
 	time_edited = models.DateTimeField(auto_now=True)
+
+	def increase_count(self):
+		self.count += 1
+		self.save()
 
 	def __str__(self):
 		str_rep = "Thread: {} \n Description: {} \n Count: {}".format(
@@ -44,7 +48,7 @@ class Choice(models.Model):
 class Post(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
-	vote = models.ForeignKey(Choice, on_delete=models.CASCADE)
+	choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
 	description = models.TextField()
 	time_created = models.DateTimeField(auto_now_add=True)
 

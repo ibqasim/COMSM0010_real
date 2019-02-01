@@ -1,12 +1,15 @@
-{% if latest_threads %}
-    <ul>
-    {% for thread in latest_threads %}
-        <li><a href="/forum/thread/{{ thread.id }}/">{{ thread.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No threads.</p>
-{% endif %}
+<h1>Forum</h1>
+
+<h3>{{ user.username }}</h3>
+
+<p><a href="{% url 'forum:create' %}">Create thread</a></p>
+
+<ul> Listing threads
+{% for thread in latest_threads %}
+    <li><a href="{% url 'forum:thread' thread.id %}/">{{ thread.title }}, {{ thread.user.username }}</a></li>
+{% endfor %}
+</ul>
+
 
 
 

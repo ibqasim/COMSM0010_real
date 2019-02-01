@@ -1,0 +1,15 @@
+
+<h1> Create thread </h1>
+<h3>{{ user.username }}</h3>
+
+<form action="{% url 'forum:create_thread' %}" method="post">
+{% csrf_token %}
+	<input id="thread-title" name="title" placeholder="Title...">
+	<textarea id="thread-description" name="description" placeholder="Description..."></textarea>
+
+	<input id="thread-choice1" name="choice1" placeholder="Choice1...">
+	<input id="thread-choice2" name="choice2" placeholder="Choice2...">
+<input type="submit" value="Post">
+</form>
+
+
