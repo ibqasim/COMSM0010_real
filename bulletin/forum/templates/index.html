@@ -1,15 +1,28 @@
-<h1>Forum</h1>
+{% extends 'base.html' %}
 
-<h3>{{ user.username }}</h3>
+{% block title %}
+Bulletin - Threads
+{% endblock %}
 
-<p><a href="{% url 'forum:create' %}">Create thread</a></p>
+{% block content %}
 
-<ul> Listing threads
-{% for thread in latest_threads %}
-    <li><a href="{% url 'forum:thread' thread.id %}/">{{ thread.title }}, {{ thread.user.username }}</a></li>
-{% endfor %}
-</ul>
-
+<div class="d-flex w-100 justify-content-between" style="padding-top:50px; padding-bottom: 50px">
+	<h1 class="mb-1">Latest Threads</h1>
+	<p><a class="btn btn-outline-primary" href="{% url 'forum:create' %}">Create thread</a></p>
+</div>
+<div class="list-group">
+	{% for thread in latest_threads %}
+	  <a href="{% url 'forum:thread' thread.id %}" class="list-group-item list-group-item-action">
+	    <div class="d-flex w-100 justify-content-between">
+	      <h5 class="mb-1">{{ thread.title }}</h5>
+	      <small>{{ thread.time_edited }}</small>
+	    </div>
+	    <p class="mb-1">{{ thread.description }}</p>
+	    <small class="text-muted">{{ thread.user.username }}</small>
+	  </a>
+	{% endfor %}
+</div>
+{% endblock %}
 
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{% title %}</title>
+		<title>{% block title %}{% endblock %}</title>
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
@@ -11,29 +11,26 @@
 		
 	</head>
 	<body>
-		<header>
-			<div class="navbar navbar-dark bg-secondary">
-				<span class="navbar-brand">Bulletin</span>
-				<span class="navbar-text">Chatrooms with synced video</span>
-				<span class="navbar-text">Karim Allaouat, Ibrahim Qasim, Veyndan Stuart @ 2019</span>
+		<div class="navbar navbar-light bg-light">
+			<div class="container">
+				<span class="form-inline">
+					{% if user.is_authenticated %}
+						Logged in as: <span><strong>{{user.username}}</strong></span>
+					{% else %}
+						<a href="/" class="btn btn-outline-secondary">Login</a>
+					{% endif %}
+				</span>
+				<a href="/forum" class="navbar-brand">Bulletin</a>
+				<span class="form-inline">
+					{% if user.is_authenticated %}
+						<a href="/logout" class="btn btn-outline-secondary">Logout</a>
+					{% endif %}
+				</span>
 			</div>
-		</header>
-		<main>
-			{% content %}
-			<div class="container-fluid">
-				<div class="input-group">
-					<textarea class="form-control rounded-0 border-0" rows="3" style="resize: none;" placeholder="Enter text..."></textarea>
-					<div class="input-group-append">
-						<button class="btn rounded-0">Send</button>
-					</div>
-				</div>
-			</div>	
-		</main>
-		<footer>
-			<div class="navbar navbar-dark bg-secondary" style="position: absolute; bottom: 0; width: 100%;">
-				<span class="navbar-brand">Footer</span>
-				<span class="navbar-text">Karim Allaouat, Ibrahim Qasim, Veyndan Stuart @ 2019</span>
-			</div>
-		</footer>
+		</div>
+		<div class="container" style="padding-bottom: 40px">
+			{% block content %}
+			{% endblock %}
+		</div>
 	</body>
 </html>

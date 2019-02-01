@@ -1,15 +1,33 @@
+{% extends 'base.html' %}
 
-<h1> Create thread </h1>
-<h3>{{ user.username }}</h3>
+{% block title %}
+Bulletin - Create thread
+{% endblock %}
 
-<form action="{% url 'forum:create_thread' %}" method="post">
-{% csrf_token %}
-	<input id="thread-title" name="title" placeholder="Title...">
-	<textarea id="thread-description" name="description" placeholder="Description..."></textarea>
+{% block content %}
 
-	<input id="thread-choice1" name="choice1" placeholder="Choice1...">
-	<input id="thread-choice2" name="choice2" placeholder="Choice2...">
-<input type="submit" value="Post">
+<div style="padding-top: 50px">
+<h1 class="mb-1" style="padding-bottom: 20px">Create thread</h1>
+<h5 class="mb-1">{{ user.username }}</h5>
+
+<form action="{% url 'forum:create_thread' %}" method="post" style="padding-top: 30px; padding-bottom: 30px;">
+	<div class="form-group">
+		<input class="form-control" id="thread-title" name="title" placeholder="Title...">
+	</div>
+	<div class="form-group">
+		<textarea class="form-control" id="thread-description" name="description" placeholder="Description..."></textarea>
+	</div>
+	<div class="form-group">
+		<input class="form-control" id="thread-choice1" name="choice1" placeholder="Choice1...">
+	</div>
+	<div class="form-group">
+		<input class="form-control" id="thread-choice2" name="choice2" placeholder="Choice2...">
+	</div>
+
+	{% csrf_token %}
+	<button type="submit" class="btn btn-light">Create</button>
 </form>
+</div>
 
+{% endblock %}
 

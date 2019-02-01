@@ -13,11 +13,14 @@ class Thread(models.Model):
 	time_edited = models.DateTimeField(auto_now=True)
 
 	def last_n_threads(n=10):
-		threads = Thread.objects.order_by('-time_edited')[:n]
+		# threads = Thread.objects.order_by('-time_edited')[:n]
+		threads = Thread.objects.order_by('-time_edited').all()
 		return threads
 
 	def last_n_posts(n=100):
-		posts = self.post_set.order_by('-time_edited')[:n]
+		# posts = self.post_set.order_by('-time_edited')[:n]
+		posts = self.post_set.order_by('-time_edited').all()
+		return posts
 
 	def __str__(self):
 		str_rep = "User: {} \n Title: {} \n Description: {}".format(

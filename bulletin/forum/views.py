@@ -7,7 +7,7 @@ from .models import Thread, Choice, Post
 
 # Create your views here.
 
-@login_required
+# @login_required
 def index(request):
 	# return HttpResponse('Listing threads')
 	threads = Thread.last_n_threads()
@@ -33,7 +33,7 @@ def create_thread(request):
 	thread.choice_set.create(description=request.POST['choice2'])
 	return HttpResponseRedirect(reverse('forum:thread', args=(thread.id,)))
 
-@login_required
+# @login_required
 def thread(request, thread_id):
 	# return HttpResponse('Viewing in {}'.format(thread_id))
 	thread = get_object_or_404(Thread, pk=thread_id)
@@ -46,6 +46,7 @@ def thread(request, thread_id):
 def post(request, thread_id):
 	# return HttpResponse('Posting in {}'.format(thread_id))
 	thread = get_object_or_404(Thread, pk=thread_id)
+	thread.save()
 	choice = thread.choice_set.get(pk=request.POST['choice'])
 	# choice = thread.choice_set.get(pk=request.POST.get('choice', 0))
 	choice.increase_count()
