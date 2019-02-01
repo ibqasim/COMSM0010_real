@@ -11,6 +11,11 @@
 		
 	</head>
 	<body style="height:100%; padding-left: 40%; padding-top: 10%; padding-right: 40%;">
+		{% if user.is_authenticated %}
+		<h1><a href="/forum">Bulletin</a></h1>
+		<h3>Logged in as <strong> {{user.username}} </strong> </h3>
+		<a href="/forum" class="btn btn-light btn-block">Go to forum</a>
+		{% else %}
 		<form method="post" style="text-align: center; width: 100%; max-width: 400px">
 			<h1><a href="/forum">Bulletin</a></h1>
 			<h3>Please login</h3>
@@ -26,6 +31,7 @@
 			<a href="signup" class="btn btn-light btn-block">Signup</a>
 			<a href="/forum" class="btn btn-light btn-block">Maybe later...</a>
 		</form>
+		{% endif %}
 
 	</body>
 </html>
