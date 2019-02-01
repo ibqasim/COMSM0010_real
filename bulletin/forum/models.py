@@ -59,7 +59,7 @@ class Post(models.Model):
 		str_rep = "User: {} \n Thread: {} \n Vote: {} \n Description: {}".format(
 			self.user.username,
 			self.thread.title,
-			self.vote.description,
+			self.choice.description,
 			self.description,
 			) 
 		return str_rep
